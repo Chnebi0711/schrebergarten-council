@@ -1,0 +1,369 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Design tokens ──────────────────────────────────────── */
+:root {
+  --parchment:      #F5EDD6;
+  --parchment-mid:  #EDE0C0;
+  --parchment-dark: #D9C8A0;
+  --ink:            #3D2B1F;
+  --ink-light:      #6B4F3A;
+  --ink-faint:      #A08060;
+  --golden:         #C4A882;
+  --sage:           #5A7A52;
+  --sage-dark:      #3C6B35;
+  --sage-glow:      rgba(90, 122, 82, 0.4);
+  --font-serif:     var(--font-lora), Georgia, serif;
+  --font-sans:      var(--font-inter), system-ui, sans-serif;
+}
+
+/* ─── Base ───────────────────────────────────────────────── */
+html, body {
+  background-color: var(--parchment);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+/* ─── Background image ───────────────────────────────────── */
+.parchment-bg {
+  background-color: transparent;
+  min-height: 100dvh;
+  position: relative;
+  isolation: isolate;
+}
+
+.parchment-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: url("/images/background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.32;
+}
+
+/* ─── Typography helpers ─────────────────────────────────── */
+.font-serif { font-family: var(--font-serif); }
+.font-sans  { font-family: var(--font-sans); }
+
+/* ─── Decorative divider ─────────────────────────────────── */
+.deco-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.deco-divider::before,
+.deco-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #C4A882, transparent);
+}
+
+.deco-divider span {
+  color: #C4A882;
+  font-size: 0.7rem;
+  opacity: 0.85;
+  flex-shrink: 0;
+}
+
+/* ─── Council circle container ───────────────────────────── */
+.council-container {
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* ─── Agent node ─────────────────────────────────────────── */
+.agent-node {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: opacity 0.25s, transform 0.25s;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.agent-node:hover .agent-img-wrap {
+  transform: scale(1.07);
+}
+
+.agent-node.inactive {
+  opacity: 0.28;
+}
+
+.agent-node.inactive:hover {
+  opacity: 0.45;
+}
+
+/* Image wrapper — parchment bg so multiply blend dissolves white */
+.agent-img-wrap {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background-color: var(--parchment);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.agent-img-wrap img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+  display: block;
+}
+
+/* Selection ring — amber, outside the image wrapper */
+.agent-ring-select {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2.5px solid #C4A882;
+  pointer-events: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.agent-node.active .agent-ring-select {
+  border-color: #A07840;
+  box-shadow: 0 0 0 3px rgba(160, 120, 64, 0.15);
+}
+
+/* Speaking ring — green pulse, slightly larger */
+.agent-ring-speak {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2.5px solid var(--sage);
+  pointer-events: none;
+  animation: speak-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes speak-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--sage-glow); }
+  50%       { box-shadow: 0 0 0 12px rgba(90, 122, 82, 0); }
+}
+
+/* Agent label */
+.agent-label {
+  font-family: var(--font-serif);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* ─── Fig Tree centre node ───────────────────────────────── */
+.figtree-node {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.figtree-img-wrap {
+  position: relative;
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  background-color: var(--parchment);
+  border: 2px dashed #C4A882;
+  overflow: hidden;
+}
+
+.figtree-img-wrap img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+  display: block;
+}
+
+.figtree-ring-speak {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--sage);
+  pointer-events: none;
+  animation: speak-pulse 1.6s ease-in-out infinite;
+}
+
+.figtree-label {
+  font-family: var(--font-serif);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--sage-dark);
+}
+
+/* ─── Speech card ────────────────────────────────────────── */
+.speech-card {
+  background: rgba(255, 253, 245, 0.92);
+  border: 1.5px solid #C4A882;
+  border-radius: 14px;
+  padding: 18px 20px;
+  backdrop-filter: blur(4px);
+}
+
+.speech-card-body {
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--ink-light);
+  line-height: 1.7;
+}
+
+/* ─── Completed agent rows ───────────────────────────────── */
+.agent-details {
+  background: rgba(245, 237, 214, 0.6);
+  border: 1px solid rgba(196, 168, 130, 0.4);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.agent-details summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-serif);
+  font-size: 0.8rem;
+  color: var(--ink-light);
+}
+
+.agent-details summary::-webkit-details-marker { display: none; }
+
+.agent-details-body {
+  padding: 10px 14px 12px;
+  font-family: var(--font-serif);
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--ink-light);
+  line-height: 1.7;
+  border-top: 1px solid rgba(196, 168, 130, 0.3);
+}
+
+/* ─── Synthesis card ─────────────────────────────────────── */
+.synthesis-card {
+  background: rgba(45, 80, 35, 0.92);
+  border: 2px solid #3C6B35;
+  border-radius: 16px;
+  padding: 20px 24px;
+  color: #DFF0D8;
+}
+
+.synthesis-card-body {
+  font-family: var(--font-sans);
+  font-size: 0.83rem;
+  line-height: 1.75;
+  color: #DFF0D8;
+  white-space: pre-line;
+}
+
+/* ─── Question quote ─────────────────────────────────────── */
+.question-quote {
+  border-left: 3px solid #C4A882;
+  padding: 10px 16px;
+  background: rgba(196, 168, 130, 0.1);
+  border-radius: 0 8px 8px 0;
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--ink-light);
+}
+
+/* ─── Convene button ─────────────────────────────────────── */
+.btn-convene {
+  background: #3C6B35;
+  color: #F0F7EC;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 32px;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+  box-shadow: 0 2px 10px rgba(60, 107, 53, 0.25);
+}
+
+.btn-convene:hover:not(:disabled) {
+  background: #2D5A27;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(60, 107, 53, 0.3);
+}
+
+.btn-convene:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ─── Ghost button ───────────────────────────────────────── */
+.btn-ghost {
+  background: transparent;
+  border: 1.5px solid #C4A882;
+  color: var(--ink-light);
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn-ghost:hover {
+  background: #EDE0C0;
+  color: var(--ink);
+}
+
+/* ─── Textarea ───────────────────────────────────────────── */
+.council-textarea {
+  background: rgba(255, 253, 245, 0.7);
+  border: 1.5px solid #C4A882;
+  border-radius: 10px;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  padding: 12px 16px;
+  resize: none;
+  width: 100%;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+}
+
+.council-textarea:focus {
+  border-color: #5A7A52;
+  box-shadow: 0 0 0 3px rgba(90, 122, 82, 0.15);
+}
+
+.council-textarea::placeholder {
+  color: #A08060;
+  font-style: italic;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--parchment-mid); }
+::-webkit-scrollbar-thumb { background: var(--golden); border-radius: 3px; }

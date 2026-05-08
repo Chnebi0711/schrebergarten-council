@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem \"C:\\\\Program Files\\\\nodejs\\\\\" -ErrorAction SilentlyContinue | Select-Object Name; Get-ChildItem \"C:\\\\Program Files \\(x86\\)\\\\nodejs\\\\\" -ErrorAction SilentlyContinue | Select-Object Name; Test-Path \"$env:APPDATA\\\\npm\\\\npx.cmd\")",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\strebel\\\\AppData\\\\Local\\\\\" -Directory -ErrorAction SilentlyContinue | Select-Object Name | Where-Object { $_.Name -match 'node|nvm|volta' })",
+      "Bash(dir \"C:\\\\Users\\\\strebel\\\\Downloads\\\\schrebergarten-council-design\\\\design_handoff_schrebergarten\" /s /b)"
+    ]
+  }
+}
