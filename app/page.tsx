@@ -1,11 +1,8 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import CouncilPage from "@/components/CouncilPage";
 
-export default async function ProtectedLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function Page() {
   const cookieStore = await cookies();
   const session = cookieStore.get("sc_session");
   const correct = process.env.ACCESS_PASSWORD;
@@ -14,5 +11,5 @@ export default async function ProtectedLayout({
     redirect("/login");
   }
 
-  return <>{children}</>;
+  return <CouncilPage />;
 }

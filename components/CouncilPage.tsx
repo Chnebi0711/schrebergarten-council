@@ -51,7 +51,7 @@ function speakAsync(
 }
 
 // ── Main page ───────────────────────────────────────────────
-export default function Home() {
+export default function CouncilPage() {
   // Language
   const [lang, setLang] = useState<Lang>("en");
 
