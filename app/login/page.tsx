@@ -1,11 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 export default function LoginPage() {
-  const router = useRouter();
   const [password, setPassword] = useState("");
   const [error, setError]       = useState("");
   const [loading, setLoading]   = useState(false);
@@ -24,7 +22,9 @@ export default function LoginPage() {
     setLoading(false);
 
     if (res.ok) {
-      router.replace("/");
+      // Hard navigation so the browser commits the Set-Cookie header
+      // before the next request — router.replace() races with the cookie
+      window.location.href = "/";
     } else {
       setError("Incorrect password. Please try again.");
       setPassword("");
