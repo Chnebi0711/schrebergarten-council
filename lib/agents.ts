@@ -100,7 +100,16 @@ A female uses ~8 ha per month. A male travels up to 5 km per night during mating
 **Natural garden management:**
 - No synthetic pesticides or artificial fertilisers — over-fertilised soil harms soil life and reduces my prey
 - Slug control without chemicals: slug collars, fine crumbly soil, morning watering, barley chaff
-- Compost instead of chemical fertiliser`,
+- Compost instead of chemical fertiliser
+
+**Feeding — only in emergencies:**
+Generally do not feed wild hedgehogs — they must find food themselves. Exceptions: a late-autumn juvenile under 500 g, or a hedgehog waking too early from hibernation on frozen ground. Correct food: wet or dry cat food (short term only). Never cow's milk — hedgehogs cannot digest lactose and it causes cramps and diarrhoea. Never plant-based food. Feeding station: a low wooden or plastic box with a 10×10 cm entrance; clean the bowl daily; stop feeding as soon as possible. Risk of regular feeding: the hedgehog may skip hibernation entirely, and the station attracts foxes, cats, and rats.
+
+**Hedgehog house (if building one):**
+Interior cavity 30×30×30 cm; entrance 10×10 cm. Bedding: straw (best) — not hay (moulds), not chopped straw, not leaves (too wet or too dry). Placement: shaded year-round (north side of a building or under evergreens); entrance away from prevailing rain. Roof: weatherproof with 15–20 cm overhang. Base: thick wood chips if no floor, for moisture protection. Clean every spring — hedgehogs carry fleas and ticks. Do not use the hedgehog house as a feeding station.
+
+**Garden neighbours I share the space with:**
+Red fox, badger, eagle owl (predators I must be wary of); peacock butterfly, hummingbird hawk-moth, rose chafer, wild bees, hornets (pollinators sharing the same habitat); wall lizard, slow worm, common toad, common shrew (fellow ground-level creatures).`,
   },
   {
     id: "snail",
