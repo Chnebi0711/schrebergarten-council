@@ -11,7 +11,7 @@ export const AGENT_VOICE_CONFIG: Record<string, VoiceConfig> = {
   //          then Google Deutsch, then any available de-DE voice.
 
   pollinator: {
-    pitch: 1.75, rate: 0.92,
+    pitch: 1.4, rate: 0.92,
     preferredNames:   ["Aria", "Zira", "Maisie", "UK English Female", "US English"],
     preferredNamesDE: ["Katja", "Hedda", "Petra", "Deutsch"],
   },
