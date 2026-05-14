@@ -11,9 +11,9 @@ export const AGENT_VOICE_CONFIG: Record<string, VoiceConfig> = {
   //          then Google Deutsch, then any available de-DE voice.
 
   pollinator: {
-    pitch: 1.4, rate: 0.92,
+    pitch: 1.5, rate: 1.05,
     preferredNames:   ["Aria", "Zira", "Maisie", "UK English Female", "US English"],
-    preferredNamesDE: ["Katja", "Hedda", "Petra", "Deutsch"],
+    preferredNamesDE: ["Petra", "Hedda", "Katja", "Deutsch"],
   },
   soil: {
     pitch: 0.55, rate: 0.72,
@@ -23,7 +23,7 @@ export const AGENT_VOICE_CONFIG: Record<string, VoiceConfig> = {
   hedgehog: {
     pitch: 1.25, rate: 1.05,
     preferredNames:   ["Michelle", "Ana", "Jenny", "US English"],
-    preferredNamesDE: ["Katja", "Hedda", "Anna", "Deutsch"],
+    preferredNamesDE: ["Anna", "Katja", "Hedda", "Deutsch"],
   },
   snail: {
     pitch: 0.75, rate: 0.65,
