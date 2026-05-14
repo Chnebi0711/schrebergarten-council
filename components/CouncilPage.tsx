@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { AGENTS } from "@/lib/agents";
 import { callAgent, callModerator, callOpening } from "@/lib/api";
-import { speak, stopSpeech } from "@/lib/speech";
+import { speak, stopSpeech, unlockSpeech } from "@/lib/speech";
 import { AgentId, AgentResponse } from "@/lib/types";
 import { Lang, translations } from "@/lib/i18n";
 import CouncilCircle from "@/components/CouncilCircle";
@@ -195,6 +195,10 @@ export default function CouncilPage() {
   // ── Run council ───────────────────────────────────────────
   async function runCouncil() {
     if (!question.trim() || isRunning) return;
+
+    // Unlock iOS speech synthesis — must happen synchronously inside the
+    // user gesture (button tap) before any await.
+    if (!muted) unlockSpeech();
 
     // Capture translations at call time so label language stays
     // consistent throughout the session even if user switches mid-run

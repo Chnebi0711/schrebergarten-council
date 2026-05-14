@@ -71,6 +71,21 @@ function getVoice(config: VoiceConfig, lang = "en"): SpeechSynthesisVoice | null
   return langVoices[0] ?? voices[0] ?? null;
 }
 
+/**
+ * Unlock speech synthesis on iOS — must be called directly inside a user
+ * gesture handler (e.g. button click). Speaks a silent utterance so that
+ * subsequent async calls are not blocked by iOS's autoplay policy.
+ */
+export function unlockSpeech(): void {
+  try {
+    const u = new SpeechSynthesisUtterance(" ");
+    u.volume = 0;
+    window.speechSynthesis.speak(u);
+  } catch {
+    // ignore — not all browsers expose speechSynthesis
+  }
+}
+
 export function speak(
   text: string,
   agentId: string,
@@ -91,18 +106,37 @@ export function speak(
     console.log(
       `[Speech][${lang}] ${agentId} → "${voice?.name ?? "browser default"}" (pitch ${config.pitch}, rate ${config.rate})`
     );
-    if (onEnd) utterance.onend = onEnd;
+
+    if (onEnd) {
+      // iOS often does not fire onend — use onerror + a duration-based timeout
+      // as fallbacks so speakAsync always resolves and the council can continue.
+      const wordCount    = text.trim().split(/\s+/).length;
+      const estimatedMs  = Math.max(2500, (wordCount / (140 * config.rate)) * 60_000) + 2000;
+
+      let finished = false;
+      const finish = () => { if (!finished) { finished = true; onEnd(); } };
+
+      utterance.onend  = finish;
+      utterance.onerror = finish;
+      setTimeout(finish, estimatedMs);
+    }
+
     window.speechSynthesis.speak(utterance);
   };
 
-  // Voices may not be loaded yet — wait if needed
+  // Voices may not be loaded yet — wait if needed.
+  // On iOS, voiceschanged may never fire — fall back after 500 ms.
   const voices = window.speechSynthesis.getVoices();
   if (voices.length > 0) {
     setVoiceAndSpeak();
   } else {
-    window.speechSynthesis.addEventListener("voiceschanged", setVoiceAndSpeak, {
-      once: true,
-    });
+    let voicesFired = false;
+    window.speechSynthesis.addEventListener("voiceschanged", () => {
+      if (!voicesFired) { voicesFired = true; setVoiceAndSpeak(); }
+    }, { once: true });
+    setTimeout(() => {
+      if (!voicesFired) { voicesFired = true; setVoiceAndSpeak(); }
+    }, 500);
   }
 
   return utterance;
