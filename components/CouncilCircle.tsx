@@ -25,6 +25,27 @@ const AGENT_ANGLES: Record<AgentId, number> = {
   neighbor:     210,
 };
 
+type TooltipPlacement = "above" | "right" | "below" | "left";
+
+const TOOLTIP_PLACEMENT: Record<AgentId, TooltipPlacement> = {
+  pollinator:   "above",
+  soil:         "right",
+  hedgehog:     "right",
+  snail:        "below",
+  biodiversity: "left",
+  neighbor:     "left",
+};
+
+function tooltipStyle(placement: TooltipPlacement): React.CSSProperties {
+  const base: React.CSSProperties = { position: "absolute", pointerEvents: "none" };
+  switch (placement) {
+    case "above": return { ...base, bottom: "calc(100% + 8px)", left: "50%", transform: "translateX(-50%)" };
+    case "right": return { ...base, left:   "calc(100% + 10px)", top: "50%",  transform: "translateY(-50%)", textAlign: "left" };
+    case "below": return { ...base, top:    "calc(100% + 8px)",  left: "50%", transform: "translateX(-50%)" };
+    case "left":  return { ...base, right:  "calc(100% + 10px)", top: "50%",  transform: "translateY(-50%)", textAlign: "right" };
+  }
+}
+
 function agentPos(id: AgentId, cx: number, cy: number, r: number) {
   const rad = (AGENT_ANGLES[id] * Math.PI) / 180;
   return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
@@ -152,7 +173,7 @@ export default function CouncilCircle({
             </span>
 
             {mode === "selection" && (
-              <div className="agent-tooltip">
+              <div className="agent-tooltip" style={tooltipStyle(TOOLTIP_PLACEMENT[agent.id])}>
                 {lang === "de" ? agent.tooltipDe : agent.tooltip}
               </div>
             )}
