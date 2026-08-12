@@ -108,7 +108,7 @@ html, body {
 /* ─── Agent tooltip ──────────────────────────────────────── */
 .agent-tooltip {
   width: 170px;
-  background: rgba(255, 252, 245, 0.97);
+  background: rgba(255, 252, 245, 0.82);
   border: 1px solid #C4A882;
   border-radius: 8px;
   padding: 8px 10px;

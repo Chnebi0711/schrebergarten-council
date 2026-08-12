@@ -40,9 +40,9 @@ function tooltipStyle(placement: TooltipPlacement): React.CSSProperties {
   const base: React.CSSProperties = { position: "absolute", pointerEvents: "none" };
   switch (placement) {
     case "above": return { ...base, bottom: "calc(100% + 8px)", left: "50%", transform: "translateX(-50%)" };
-    case "right": return { ...base, left:   "calc(100% + 10px)", top: "50%",  transform: "translateY(-50%)", textAlign: "left" };
+    case "right": return { ...base, left:   "calc(100% + 10px)", top: "50%",  transform: "translateY(-50%)" };
     case "below": return { ...base, top:    "calc(100% + 8px)",  left: "50%", transform: "translateX(-50%)" };
-    case "left":  return { ...base, right:  "calc(100% + 10px)", top: "50%",  transform: "translateY(-50%)", textAlign: "right" };
+    case "left":  return { ...base, right:  "calc(100% + 10px)", top: "50%",  transform: "translateY(-50%)" };
   }
 }
 
