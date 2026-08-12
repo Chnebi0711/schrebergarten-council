@@ -422,6 +422,8 @@ export default function CouncilPage() {
               size={380}
               onToggle={toggleAgent}
               figtreeLabel={t.figTree}
+              figtreeTooltip="The oldest being in this garden. I open each council session, then listen to all voices — and offer a synthesis: where you agree, where you diverge, and what you might actually do."
+              figtreeTooltipDe="Das älteste Wesen in diesem Garten. Ich eröffne jede Sitzung, höre allen Stimmen zu — und biete eine Synthese: wo ihr übereinstimmt, wo ihr divergiert und was du konkret tun könntest."
               lang={lang}
             />
             <p style={{
@@ -479,6 +481,8 @@ export default function CouncilPage() {
             mode="deliberation"
             size={360}
             figtreeLabel={t.figTree}
+            figtreeTooltip="The oldest being in this garden. I open each council session, then listen to all voices — and offer a synthesis: where you agree, where you diverge, and what you might actually do."
+            figtreeTooltipDe="Das älteste Wesen in diesem Garten. Ich eröffne jede Sitzung, höre allen Stimmen zu — und biete eine Synthese: wo ihr übereinstimmt, wo ihr divergiert und was du konkret tun könntest."
             lang={lang}
           />
 

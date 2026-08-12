@@ -13,6 +13,8 @@ interface Props {
   onToggle?: (id: AgentId) => void;
   disabled?: boolean;
   figtreeLabel?: string;
+  figtreeTooltip?: string;
+  figtreeTooltipDe?: string;
   lang?: Lang;
 }
 
@@ -66,6 +68,8 @@ export default function CouncilCircle({
   onToggle,
   disabled = false,
   figtreeLabel = "Fig Tree",
+  figtreeTooltip,
+  figtreeTooltipDe,
   lang = "en",
 }: Props) {
   const cx = size / 2;
@@ -115,6 +119,11 @@ export default function CouncilCircle({
           {isFigTreeSpeaking && <div className="figtree-ring-speak" />}
         </div>
         <span className="figtree-label">{figtreeLabel}</span>
+        {(figtreeTooltip || figtreeTooltipDe) && (
+          <div className="agent-tooltip" style={{ position: "absolute", top: "calc(100% + 32px)", left: "50%", transform: "translateX(-50%)" }}>
+            {lang === "de" ? figtreeTooltipDe : figtreeTooltip}
+          </div>
+        )}
       </div>
 
       {/* ── Agent nodes ── */}
