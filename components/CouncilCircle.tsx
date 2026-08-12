@@ -150,6 +150,12 @@ export default function CouncilCircle({
             <span className="agent-label" style={{ color: isActive ? "var(--ink)" : "#aaa" }}>
               {lang === "de" ? agent.nameDe : agent.name}
             </span>
+
+            {mode === "selection" && (
+              <div className="agent-tooltip">
+                {lang === "de" ? agent.tooltipDe : agent.tooltip}
+              </div>
+            )}
           </div>
         );
       })}

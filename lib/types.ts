@@ -12,6 +12,8 @@ export interface AgentConfig {
   id: AgentId;
   name: string;
   nameDe: string;
+  tooltip: string;
+  tooltipDe: string;
   represents: string;
   color: string;
   borderColor: string;
