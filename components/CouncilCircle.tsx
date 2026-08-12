@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { AGENTS } from "@/lib/agents";
 import { AgentId } from "@/lib/types";
+import { Lang } from "@/lib/i18n";
 
 interface Props {
   activeAgents: Set<AgentId>;
@@ -12,6 +13,7 @@ interface Props {
   onToggle?: (id: AgentId) => void;
   disabled?: boolean;
   figtreeLabel?: string;
+  lang?: Lang;
 }
 
 const AGENT_ANGLES: Record<AgentId, number> = {
@@ -43,6 +45,7 @@ export default function CouncilCircle({
   onToggle,
   disabled = false,
   figtreeLabel = "Fig Tree",
+  lang = "en",
 }: Props) {
   const cx = size / 2;
   const cy = size / 2;
@@ -109,7 +112,7 @@ export default function CouncilCircle({
             }}
             role={mode === "selection" ? "checkbox" : undefined}
             aria-checked={mode === "selection" ? isActive : undefined}
-            aria-label={agent.name}
+            aria-label={lang === "de" ? agent.nameDe : agent.name}
             tabIndex={mode === "selection" ? 0 : -1}
             onKeyDown={(e) => {
               if (mode === "selection" && (e.key === " " || e.key === "Enter")) {
@@ -145,7 +148,7 @@ export default function CouncilCircle({
             </div>
 
             <span className="agent-label" style={{ color: isActive ? "var(--ink)" : "#aaa" }}>
-              {agent.name}
+              {lang === "de" ? agent.nameDe : agent.name}
             </span>
           </div>
         );

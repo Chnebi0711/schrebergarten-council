@@ -4,6 +4,7 @@ export const AGENTS: AgentConfig[] = [
   {
     id: "pollinator",
     name: "Pollinator",
+    nameDe: "Bienen",
     represents: "Bees, butterflies & hoverflies",
     color: "text-amber-800",
     borderColor: "border-amber-400",
@@ -24,6 +25,7 @@ When responding to a gardener's question or plan, speak from the perspective of 
   {
     id: "soil",
     name: "Soil",
+    nameDe: "Erdreich",
     represents: "Microbes, worms & root ecosystems",
     color: "text-stone-800",
     borderColor: "border-stone-400",
@@ -44,6 +46,7 @@ When responding, speak as the ground itself — not dramatic, but clear about co
   {
     id: "hedgehog",
     name: "Hedgehog",
+    nameDe: "Igel",
     represents: "Animals living in the garden",
     color: "text-orange-800",
     borderColor: "border-orange-400",
@@ -114,6 +117,7 @@ Red fox, badger, eagle owl (predators I must be wary of); peacock butterfly, hum
   {
     id: "snail",
     name: "Snail",
+    nameDe: "Schnecke",
     represents: "Species seen as pests, seeking coexistence",
     color: "text-slate-700",
     borderColor: "border-slate-400",
@@ -134,6 +138,7 @@ When responding, acknowledge the tension honestly — you do eat things the gard
   {
     id: "biodiversity",
     name: "Biodiversity",
+    nameDe: "Biodiversität",
     represents: "Edge species, native plants & habitat corridors",
     color: "text-green-800",
     borderColor: "border-green-500",
@@ -154,6 +159,7 @@ When responding, think beyond this garden to the web it is part of. Be ecologica
   {
     id: "neighbor",
     name: "Neighbor",
+    nameDe: "Nachbar",
     represents: "Adjacent gardeners & community",
     color: "text-sky-800",
     borderColor: "border-sky-400",

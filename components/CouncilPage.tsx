@@ -257,7 +257,7 @@ export default function CouncilPage() {
       if (signal.aborted) break;
 
       setSpeakingId(agent.id);
-      setSpeakerLabel(agent.name);
+      setSpeakerLabel(lang === "de" ? agent.nameDe : agent.name);
       setCurrentText("");
 
       try {
@@ -422,6 +422,7 @@ export default function CouncilPage() {
               size={380}
               onToggle={toggleAgent}
               figtreeLabel={t.figTree}
+              lang={lang}
             />
             <p style={{
               fontFamily: "var(--font-serif)", fontStyle: "italic",
@@ -478,6 +479,7 @@ export default function CouncilPage() {
             mode="deliberation"
             size={360}
             figtreeLabel={t.figTree}
+            lang={lang}
           />
 
           {/* ── Current speaker card ── */}
@@ -540,7 +542,7 @@ export default function CouncilPage() {
                         <Image src={agent.image} alt={agent.name} width={22} height={22}
                           style={{ mixBlendMode: "multiply", display: "block" }} />
                       </div>
-                      <span>{agent.name}</span>
+                      <span>{lang === "de" ? agent.nameDe : agent.name}</span>
                       <span style={{ marginLeft: "auto", color: "var(--ink-faint)", fontSize: "0.7rem" }}>▾</span>
                     </summary>
                     <div className="agent-details-body">

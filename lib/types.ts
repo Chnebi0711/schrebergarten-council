@@ -11,6 +11,7 @@ export type OutputMode = "transcript" | "consensus" | "conflict";
 export interface AgentConfig {
   id: AgentId;
   name: string;
+  nameDe: string;
   represents: string;
   color: string;
   borderColor: string;
